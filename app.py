@@ -1,25 +1,34 @@
 import streamlit as st
+import streamlit as st
 
-# Setup Streamlit page
 st.set_page_config(page_title="AI Career Recommender", layout="centered")
 st.title("🚀 AI-Powered Career Recommendation System")
+st.write("✅ Reached title")
 
-# Download required NLTK + SpaCy models
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
+st.write("✅ NLTK downloads done")
 
 try:
     import spacy
     spacy.load("en_core_web_sm")
+    st.write("✅ SpaCy model loaded")
 except:
     from spacy.cli import download
     download("en_core_web_sm")
     import spacy
+    st.write("✅ SpaCy model downloaded & loaded")
 
-# Import after model downloads
-from pyresparser import ResumeParser
-from recommender import recommend_careers, gpt_recommend_careers
+try:
+    from pyresparser import ResumeParser
+    from recommender import recommend_careers, gpt_recommend_careers
+    st.write("✅ Imported recommender and ResumeParser")
+except Exception as e:
+    st.error("❌ Failed to import modules")
+    st.exception(e)
+
+
 
 # --- Skill-Based Recommendation ---
 st.header("🎯 Select Your Skills")
